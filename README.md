@@ -25,26 +25,11 @@ Then run the script by running the following command:
 ```sudo ./setup.sh```
 
 ## Tasks
-### Task 1: Create a System User
-```
-#!/bin/bash
+### Task 1: Create 2 New Digital Ocean Droplets running Arch Linux with the tag "web"
 
-# To check if user is running on sudo
-if [[ ! $EUID == 0 ]]; then
-    echo "$0 is not running as root. Please use sudo."
-    exit 1
-fi
+You will use this tag when you setup your load balancer.
 
-# Create user webgen with home directory at /var/lib/webgen
-useradd -r -m -d /var/lib/webgen -s /usr/bin/nologin webgen 
-
-# Create /bin and /HTML directories
-mkdir -p /var/lib/webgen/bin 
-mkdir -p /var/lib/webgen/HTML
-
-# Ensure user webgen has ownership of the directories
-chown -R webgen /var/lib/webgen
-```
+![two new droplets](\assets\two-droplets.png)
 
 ### Task 2: Create a Service file that runs generate_index script
 
