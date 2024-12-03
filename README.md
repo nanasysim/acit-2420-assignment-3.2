@@ -29,7 +29,7 @@ Then run the script by running the following command:
 
 You will use this tag when you setup your load balancer.
 
-![two new droplets](\assets\two-droplets.png)
+![two new droplets](assets\two-droplets.png)
 
 ### Task 2: Create a Service file that runs generate_index script
 
