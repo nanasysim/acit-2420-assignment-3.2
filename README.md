@@ -58,8 +58,21 @@ Both Servers should have the following features:
 * file server that will serve some test files on both servers.
 
 
-
+## FOR THE VIDEO
 why do we make a system user?
 - goal is to isolate the resources from other users
 - make a system user and give ownership to the file server then this will ensure that other users can not access the files or make changes to it
 - the system user does not have a login beacause this will make sure that no one can log in and change the files 
+
+Why do we make a service file?
+
+What is a after? wants? in a service file 
+what is a target? 
+- a target is a unit that is used to group other units together
+- group of service file that achieves a specific state after it has been started
+
+What is a timer?
+- a unit that activates and deactivates other units based on a schedule
+What is OnCalendar? 
+What is WantedBy?
+How does this timer know what service to start?
