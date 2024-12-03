@@ -19,3 +19,16 @@ Settings for the load balancer:
 
 It should look something like this:  
 ![load-balancer](assets/load-balancer.png)
+
+### Task 3: Clone the starter code
+
+Clone the starter code from the following repository:
+https://git.sr.ht/~nathan_climbs/2420-as3-p2-start
+
+This can be done by running the following command on your terminal:
+
+```
+git clone https://git.sr.ht/~nathan_climbs/2420-as3-p2-start
+```
+
+### Task 4:
