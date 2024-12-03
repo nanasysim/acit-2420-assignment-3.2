@@ -31,4 +31,6 @@ This can be done by running the following command on your terminal:
 git clone https://git.sr.ht/~nathan_climbs/2420-as3-p2-start
 ```
 
+This contains a script that will generate an HTML document.
+
 ### Task 4:
