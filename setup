@@ -10,16 +10,21 @@ fi
 useradd -r -m -d /var/lib/webgen -s /usr/bin/nologin webgen 
 # -r makes sure the ID is below 1000
 # -m creates the home dir 
-# -d 
+# -d assigns the home dir
 # -s shell of the webgen 
+
+# to check you created webgen run this command:
+# cat /etc/passwd | grep webgen
 
 # Create /bin and /HTML directories
 mkdir -p /var/lib/webgen/bin 
 mkdir -p /var/lib/webgen/documents
 mkdir -p /var/lib/webgen/HTML
+# -p creates the entire path
 
 # Ensure user webgen has ownership of the directories
 chown -R webgen /var/lib/webgen
+# -R recursive 
 
 # Clone the repo containing the generate_index script
 git clone https://git.sr.ht/~nathan_climbs/2420-as2-start /var/lib/webgen/bin
