@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# To check if user is running on sudo
+if [[ ! $EUID == 0 ]]; then
+    echo "$0 is not running as root. Please use sudo."
+    exit 1
+fi
+
+# Create user webgen with home directory at /var/lib/webgen
+useradd -r -m -d /var/lib/webgen -s /usr/bin/nologin webgen 
+
+# Create /bin and /HTML directories
+mkdir -p /var/lib/webgen/bin 
+mkdir -p /var/lib/webgen/HTML
+
+# Ensure user webgen has ownership of the directories
+chown -R webgen /var/lib/webgen
+
+# Clone the repo containing the generate_index script
+git clone https://git.sr.ht/~nathan_climbs/2420-as2-start /var/lib/webgen/bin
+# You must clone this repo to get the generate_index script
+
+# Create a service file that will run generate_index script
+cat > /etc/systemd/system/generate-index.service <<- "alucard" 
+[Unit]
+Description=Generate index.html
+After=network-online.target  # Ensure the service runs after the network is online
+Wants=network-online.target  # Optional dependency on network-online.target
+
+[Service]
+User=webgen
+Group=webgen
+ExecStart=/var/lib/webgen/bin/generate_index
+
+[Install]
+WantedBy=multi-user.target
+alucard
+
+# Create generate-index.timer file that will run the service everyday at 05:00
+cat > /etc/systemd/system/generate-index.timer <<- "hellsing"
+[Unit]
+Description=Run generate-index.service everyday at 05:00
+
+[Timer]
+OnCalendar=*-*-* 05:00:00  # Run the service everyday at 05:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+hellsing
+
+
+cat > /etc/nginx/sites-available/webgen <<- "isagi"
+server {
+    listen 80;
+    server_name _;
+
+    root /var/lib/webgen/HTML;
+    index index.html;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+isagi
