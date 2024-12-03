@@ -8,9 +8,14 @@ fi
 
 # Create user webgen with home directory at /var/lib/webgen
 useradd -r -m -d /var/lib/webgen -s /usr/bin/nologin webgen 
+# -r makes sure the ID is below 1000
+# -m creates the home dir 
+# -d 
+# -s shell of the webgen 
 
 # Create /bin and /HTML directories
 mkdir -p /var/lib/webgen/bin 
+mkdir -p /var/lib/webgen/documents
 mkdir -p /var/lib/webgen/HTML
 
 # Ensure user webgen has ownership of the directories

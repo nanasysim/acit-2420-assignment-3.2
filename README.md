@@ -56,3 +56,10 @@ The directory structure should look like this:
 Both Servers should have the following features:
 * updated script to generate an updated HTML document
 * file server that will serve some test files on both servers.
+
+
+
+why do we make a system user?
+- goal is to isolate the resources from other users
+- make a system user and give ownership to the file server then this will ensure that other users can not access the files or make changes to it
+- the system user does not have a login beacause this will make sure that no one can log in and change the files 
