@@ -22,6 +22,20 @@ It should look something like this:
     ```
     sudo pacman -S nginx nvim git ufw
     ```
+    To check if these packages have been installed, run the following commands:  
+
+    ```
+    nginx --version
+    ```
+    ```
+    nvim --version
+    ```
+    ```
+    git --version
+    ```
+    ```
+    ufw --version
+    ```
 ### Task 2: Create a load balancer
 The load balancer should be public facing and balance traffic between the two droplets you created in Task 1.
 
@@ -47,9 +61,26 @@ git clone https://git.sr.ht/~nathan_climbs/2420-as3-p2-start
 
 This contains a script that will generate an HTML document.
 
+Then run the following command to move the generate_index script to the bin directory. Make sure generate_index is in your pwd:
+
+```
+mv generate_index /var/lib/webgen/bin/
+```
+
 >[!NOTE] 
 >Alternatively, you can run the setup script. It will setup the necessary nginx configurations for the server and clone the repository for you.
 
+#### To run the setup script
+1. Make the setup.sh file executable by running the following command:
+    ```
+    chmod +x setup
+    ```
+2. Run the setup script by running the following command:
+    ```
+    sudo ./setup
+    ```
+>[!NOTE]
+Do the same thing for nginx-setup as well.
 ### Task 4: Update your server configuration to include a file server. 
 
 When you visit 'your-ip/documents' you will see a list of the documents in the documents directory.
