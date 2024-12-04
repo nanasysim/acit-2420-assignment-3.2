@@ -111,6 +111,51 @@ Both Servers should have the following features:
 * updated script to generate an updated HTML document
 * file server that will serve some test files on both servers.
 
+### Task 5: Verify that the file server is working
+**Verification**
+
+To verify that the timer is active and that the service runs successfully, you can use the following commands:
+
+1. Check the status of the service: 
+```
+systemctl status generate-index.service
+```
+
+2. Check if the timer is active: 
+```
+systemctl status generate-index.timer
+```
+
+3. Check logs to confirm the service runs successfully: 
+```
+journalctl -u generate-index.service
+```
+***To test your ngnix configuration, you can run the following command:***
+```
+sudo nginx -t
+```
+***Reload Nginx to apply the changes:***
+```
+sudo systemctl reload nginx
+```
+***Check the status of Nginx to ensure it is running:***
+```
+sudo systemctl status nginx
+```
+
+### Task 6: Set up a firewall
+Make sure you configure the firewall to allow SSH and HTTP traffic. You can use the following commands to set up the firewall:
+```
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw limit ssh
+sudo ufw enable
+```
+
+***To check the status of the firewall, you can use the following command:***
+```
+sudo ufw status
+```
 
 ## FOR THE VIDEO
 1. Why do we make a system user?
