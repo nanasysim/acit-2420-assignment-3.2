@@ -47,6 +47,9 @@ git clone https://git.sr.ht/~nathan_climbs/2420-as3-p2-start
 
 This contains a script that will generate an HTML document.
 
+>[!NOTE] 
+>Alternatively, you can run the setup script. It will install the necessary packages and clone the repository for you.
+
 ### Task 4: Update your server configuration to include a file server. 
 
 When you visit 'your-ip/documents' you will see a list of the documents in the documents directory.
