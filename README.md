@@ -71,7 +71,7 @@ mv generate_index /var/lib/webgen/bin/
 >Alternatively, you can run the setup script. It will setup the necessary nginx configurations for the server and clone the repository for you.
 
 #### To run the setup script
-1. Make the setup.sh file executable by running the following command:
+1. Make the setup file executable by running the following command:
     ```
     chmod +x setup
     ```
