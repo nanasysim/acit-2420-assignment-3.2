@@ -8,6 +8,20 @@ You will use this tag when you setup your load balancer.
 It should look something like this:  
 ![two new droplets](assets/two-droplets.png)
 
+### Within you droplet, do the following:
+1. Update your system by running the following command:
+    ```
+    sudo pacman -Syu
+    ```
+    This will update your system and make sure you have the latest packages.
+2. Install the following packages:
+    * nginx
+    * nvim
+    * git
+    * ufw
+    ```
+    sudo pacman -S nginx nvim git ufw
+    ```
 ### Task 2: Create a load balancer
 The load balancer should be public facing and balance traffic between the two droplets you created in Task 1.
 
