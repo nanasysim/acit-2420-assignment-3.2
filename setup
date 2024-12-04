@@ -11,12 +11,13 @@ useradd -r -m -d /var/lib/webgen -s /usr/bin/nologin webgen
 # -r makes sure the ID is below 1000
 # -m creates the home dir 
 # -d assigns the home dir
-# -s shell of the webgen 
+# -s sets the shell of the webgen 
+# /usr/sbin/nologin is a shell that prevents other users from logging in as webgen 
 
 # to check you created webgen run this command:
 # cat /etc/passwd | grep webgen
 
-# Create /bin and /HTML directories
+# Create /bin /documents and /HTML directories
 mkdir -p /var/lib/webgen/bin 
 mkdir -p /var/lib/webgen/documents
 mkdir -p /var/lib/webgen/HTML
@@ -30,17 +31,25 @@ chown -R webgen:webgen /var/lib/webgen
 git clone https://git.sr.ht/~nathan_climbs/2420-as2-start /var/lib/webgen/bin
 # You must clone this repo to get the generate_index script
 
+# Make the generate_index script executable
+chmod +x /var/lib/webgen/bin/generate_index
+# +x makes the script executable
+
+# move generate_index script to /bin
+mv ./generate_index /var/lib/webgen/bin/
+
 # Create a service file that will run generate_index script
 cat > /etc/systemd/system/generate-index.service <<- "alucard" 
 [Unit]
 Description=Generate index.html
-After=network-online.target  # Ensure the service runs after the network is online
-Wants=network-online.target  # Optional dependency on network-online.target
+After=network-online.target  
+Wants=network-online.target 
 
 [Service]
 User=webgen
 Group=webgen
 ExecStart=/var/lib/webgen/bin/generate_index
+Type=oneshot
 
 [Install]
 WantedBy=multi-user.target
@@ -52,24 +61,9 @@ cat > /etc/systemd/system/generate-index.timer <<- "hellsing"
 Description=Run generate-index.service everyday at 05:00
 
 [Timer]
-OnCalendar=*-*-* 05:00:00  # Run the service everyday at 05:00
+OnCalendar=*-*-* 05:00:00 America/Vancouver
 Persistent=true
 
 [Install]
 WantedBy=timers.target
 hellsing
-
-
-cat > /etc/nginx/sites-available/webgen <<- "isagi"
-server {
-    listen 80;
-    server_name _;
-
-    root /var/lib/webgen/HTML;
-    index index.html;
-
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
-}
-isagi
