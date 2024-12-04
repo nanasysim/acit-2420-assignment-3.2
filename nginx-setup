@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# To check if user is running on sudo
+if [[ ! $EUID == 0 ]]; then
+    echo "$0 is not running as root. Please use sudo."
+    exit 1
+fi
+
+# create sites-available directory
+mkdir -p mkdir -p /etc/nginx/sites-available
+
+# create webgen.conf file
+touch /etc/nginx/sites-available/webgen.conf
+
+# create server block in webgen.conf
+cat > /etc/nginx/sites-available/webgen.conf <<- "isagi"
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name _;
+
+    root /var/lib/webgen/HTML;
+    index index.html;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+isagi
+
+if [[ ! -d /var/lib/webgen/documents ]]; then
+    mkdir -p /var/lib/webgen/documents
+    touch /var/lib/webgen/documents/file-one
+    cat > /var/lib/webgen/documents/file-one <<- "isagi"
+    This is file one :3
+isagi
+    touch /var/lib/webgen/documents/file-two
+    cat > /var/lib/webgen/documents/file-two <<- "isagi"
+    This is file two :3
+isagi
+fi
