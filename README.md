@@ -114,19 +114,33 @@ Both Servers should have the following features:
 
 ## FOR THE VIDEO
 1. Why do we make a system user?
-- goal is to isolate the resources from other users
-- make a system user and give ownership to the file server then this will ensure that other users can not access the files or make changes to it
-- the system user does not have a login beacause this will make sure that no one can log in and change the files 
+- The goal is to isolate resources from other users.
+- Creating a system user and giving ownership to the file server ensures that other users cannot access or modify the files.
+- The system user does not have a login, which ensures that no one can log in and change the files.
 
 2. Why do we make a service file?
+- A service file is created to define and manage a service in a consistent and standardized way.
+- It allows the service to be controlled by the system's init system (such as systemd), enabling it to start, stop, restart, and manage the service automatically.
+- Service files specify how and when the service should run, including dependencies, environment variables, and execution commands.
+- This ensures that the service runs reliably and can be easily managed and monitored.
+- In this case, the service file is used to run the generate_index script, which generates an HTML document.
 
-What is a after? wants? in a service file 
-what is a target? 
-- a target is a unit that is used to group other units together
-- group of service file that achieves a specific state after it has been started
+3. What is an after? wants? in a service file 
+- `After` specifies the units that must be started before the service is started.
+- `Wants` specifies the units that the service requires to be started but does not depend on.
+- These directives ensure that the service is started in the correct order and that all dependencies are met.
 
-What is a timer?
-- a unit that activates and deactivates other units based on a schedule
-What is OnCalendar? 
-What is WantedBy?
-How does this timer know what service to start?
+4. What is a target? 
+- A target is a unit that is used to group other units together
+- Group of service file that achieves a specific state after it has been started
+
+5. What is a timer?
+- A timer is a unit that activates and deactivates other units based on a schedule.
+  
+6. What is OnCalendar? 
+- `OnCalendar` specifies when the timer should activate the unit.
+
+7. What is WantedBy?
+- `WantedBy` specifies the target unit that the timer should be activated by.
+8. How does this timer know what service to start?
+- The timer is associated with a service by specifying the service in the `Unit` section of the timer file.
