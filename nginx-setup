@@ -7,7 +7,7 @@ if [[ ! $EUID == 0 ]]; then
 fi
 
 # create sites-available directory
-mkdir -p mkdir -p /etc/nginx/sites-available
+mkdir -p /etc/nginx/sites-available
 
 # create webgen.conf file
 touch /etc/nginx/sites-available/webgen.conf

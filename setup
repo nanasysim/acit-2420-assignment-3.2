@@ -28,7 +28,7 @@ chown -R webgen:webgen /var/lib/webgen
 # -R recursive 
 
 # Clone the repo containing the generate_index script
-git clone https://git.sr.ht/~nathan_climbs/2420-as2-start /var/lib/webgen/bin
+git clone https://git.sr.ht/~nathan_climbs/2420-as2-start 
 # You must clone this repo to get the generate_index script
 
 # Make the generate_index script executable
